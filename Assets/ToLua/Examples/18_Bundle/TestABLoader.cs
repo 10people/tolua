@@ -116,14 +116,16 @@ public class TestABLoader : MonoBehaviour
 
     void OnBundleLoad()
     {                
-        LuaState state = new LuaState();
-        state.Start();
-        state.DoString("print('hello tolua#:'..tostring(Vector3.zero))");
-        state.DoFile("Main.lua");
-        LuaFunction func = state.GetFunction("Main");
-        func.Call();
-        func.Dispose();
-        state.Dispose();
-        state = null;
+        Main.Instance.Init();
+
+        //LuaState state = new LuaState();
+        //state.Start();
+        //state.DoString("print('hello tolua#:'..tostring(Vector3.zero))");
+        //state.DoFile("Main.lua");
+        //LuaFunction func = state.GetFunction("Main");
+        //func.Call();
+        //func.Dispose();
+        //state.Dispose();
+        //state = null;
 	}	
 }

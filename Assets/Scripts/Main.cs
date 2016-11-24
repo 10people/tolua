@@ -24,8 +24,7 @@ public class Main : MonoBehaviour
 
     private static Main instance;
 
-    // Use this for initialization
-    void Start()
+    public void Init()
     {
 #if UNITY_EDITOR
         LuaState.AddSearchPath(LuaFileFolder);
@@ -37,6 +36,15 @@ public class Main : MonoBehaviour
         main.Call();
         main.Dispose();
         main = null;
+    }
+
+    void Start()
+    {
+#if UNITY_EDITOR
+        Init();
+#else
+        gameObject.AddComponent<TestABLoader>();
+#endif
     }
 
     void Awake()
