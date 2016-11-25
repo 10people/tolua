@@ -31,27 +31,8 @@ public class LuaResLoader : LuaFileUtils
     public LuaResLoader()
     {
         beZip = false;
+        instance = this;
     }
-
-    public static LuaResLoader Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new LuaResLoader();
-            }
-
-            return instance;
-        }
-
-        protected set
-        {
-            instance = value;
-        }
-    }
-
-    protected static LuaResLoader instance = null;
 
     public override byte[] ReadFile(string fileName)
     {
