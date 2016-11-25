@@ -5,7 +5,7 @@ local this = Login
 local GameObject = UnityEngine.GameObject
 local Instantiate = GameObject.Instantiate
 local Vector3 = UnityEngine.Vector3
-local Type = System.Type
+local Logger = Debugger
 
 local parent
 local ItemManagerList = {}
@@ -31,7 +31,6 @@ function Login.Init()
 		itemIns.transform.localScale = Vector3.one
 
 		ItemManagerList[i] = itemIns:GetComponent("UILuaOutlet")
-		-- local currentItemTable = LoginItem
 		local currentItemTable = LoginItem.New(LoginItem)
 		ItemManagerList[i].m_TargetLuaTable = currentItemTable
 		ItemManagerList[i]:SetLuaTable()
@@ -43,4 +42,6 @@ function Login.Init()
 	this.LoginGrid.cellHeight = 50
 	this.LoginGrid:Reposition()
 
+	Logger.Log(collectgarbage("count"))
+	Logger.Log(collectgarbage("collect"))
 end

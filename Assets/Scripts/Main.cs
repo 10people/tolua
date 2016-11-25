@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.IO;
 using LuaInterface;
@@ -35,16 +36,25 @@ public class Main : MonoBehaviour
         LuaFunction main = LuaState.GetFunction("Main");
         main.Call();
         main.Dispose();
-        main = null;
+
+        LuaState.Collect();
+
+        Debug.Log(GC.GetTotalMemory(true));
+        Debug.Log(GC.GetTotalMemory(false));
+        for (int i = 0; i < GC.MaxGeneration; i++)
+        {
+            Debug.Log(GC.CollectionCount(i));
+        }
+        GC.Collect();
     }
 
     void Start()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         Init();
-#else
-        gameObject.AddComponent<TestABLoader>();
-#endif
+//#else
+//        gameObject.AddComponent<TestABLoader>();
+//#endif
     }
 
     void Awake()

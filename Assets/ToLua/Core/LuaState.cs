@@ -576,7 +576,7 @@ namespace LuaInterface
                 throw new LuaException("you must call Start() first to initialize LuaState");
             }
 #endif
-            byte[] buffer = LuaFileUtils.Instance.ReadFile(fileName);
+            byte[] buffer = LuaResLoader.Instance.ReadFile(fileName);
 
             if (buffer == null)
             {
